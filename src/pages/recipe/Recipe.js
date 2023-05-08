@@ -10,15 +10,27 @@ export default function Recipe() {
   const { id } = useParams();
   const { mode } = useTheme();
 
-  const [data, setData] = useState(null);
+  const [recipe, setRecipe] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setIsPending(true);
 
-    projectFirestore.collection("recipes").doc;
-  }, []);
+    projectFirestore
+      .collection("recipes")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setIsPending(false);
+          setRecipe(doc.data());
+        } else {
+          setIsPending(false);
+          setError("Could nt find that recipe");
+        }
+      });
+  }, [id]);
 
   return (
     <div className={`recipe ${mode}`}>
