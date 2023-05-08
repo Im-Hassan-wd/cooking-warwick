@@ -1,4 +1,5 @@
 import { useTheme } from "../hooks/useTheme";
+import modeIcon from "../assets/mode-icon.svg";
 
 // styles
 import "./ThemeSelector.css";
@@ -10,6 +11,9 @@ export default function ThemeSelector() {
 
   return (
     <div className="theme-selector">
+      <div className="mode-togggle">
+        <img src={modeIcon} alt="light / dark icon mode" />
+      </div>
       <div className="theme-buttons">
         {themeColors.map((color) => (
           <div
