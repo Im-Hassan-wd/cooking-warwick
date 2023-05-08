@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch";
+import { projectFirestore } from "../../firebase/config";
+
+// hooks
+import { useTheme } from "../../hooks/useTheme";
 
 // styles
 import "./Create.css";
@@ -13,20 +16,23 @@ export default function Create() {
   const [ingredients, setIngredients] = useState("");
   const ingredientInput = useRef(null);
   const history = useHistory();
+  const { color, mode } = useTheme();
 
-  const { postData, data, error } = useFetch(
-    "http://localhost:3000/recipes",
-    "POST"
-  );
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postData({
+    const doc = {
       title,
       ingredients,
       method,
       cookingTime: cookingTime + " minutes",
-    });
+    };
+
+    try {
+      await projectFirestore.collection("recipes").add(doc);
+      history.push("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleAdd = (e) => {
@@ -40,16 +46,9 @@ export default function Create() {
     ingredientInput.current.focus();
   };
 
-  // redirect the user
-  useEffect(() => {
-    if (data) {
-      history.push("/");
-    }
-  }, [data]);
-
   return (
     <div className="create">
-      <h2 className="page-title">Add a New Recipe</h2>
+      <h2 className={`page-title ${mode}`}>Add a New Recipe</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Recipe title:</span>
@@ -70,7 +69,11 @@ export default function Create() {
               value={newIngrdient}
               ref={ingredientInput}
             />
-            <button className="btn" onClick={handleAdd}>
+            <button
+              className="btn"
+              onClick={handleAdd}
+              style={{ background: color }}
+            >
               Add
             </button>
           </div>
@@ -99,7 +102,9 @@ export default function Create() {
           />
         </label>
 
-        <button className="btn">submit</button>
+        <button className="btn" style={{ background: color }}>
+          submit
+        </button>
       </form>
     </div>
   );
