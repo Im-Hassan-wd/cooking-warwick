@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Trash from "../assets/trash.svg";
-import { projectFirestore } from "../hooks/firebase/config";
+import { projectFirestore } from "../firebase/config";
 // hooks
 import { useTheme } from "../hooks/useTheme";
 

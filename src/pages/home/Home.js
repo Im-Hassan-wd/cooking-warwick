@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { projectFirestore } from "../../hooks/firebase/config";
+import { projectFirestore } from "../../firebase/config";
 import { useTheme } from "../../hooks/useTheme";
 
 // styles
