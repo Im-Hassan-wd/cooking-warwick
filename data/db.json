@@ -36,6 +36,30 @@
       ],
       "method": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse minima ex rem quis similique eum ratione quaerat, voluptas molestias ut repudiandae delectus voluptates. Eius esse at tenetur ab accusamus excepturi?",
       "cookingTime": "35 minutes"
+    },
+    {
+      "title": "Veg Pie",
+      "ingredients": [
+        "mushrooms",
+        "leeks",
+        "tofu",
+        "carrots"
+      ],
+      "method": "bal blah blah",
+      "cookingTime": "45 minutes",
+      "id": "PF9anBO"
+    },
+    {
+      "title": "Chickpea Curry",
+      "ingredients": [
+        "chickpeas",
+        "onions",
+        "rice",
+        "garlic"
+      ],
+      "method": "a load of rubbish",
+      "cookingTime": "35 minutes",
+      "id": "pYRgy0O"
     }
   ]
 }
